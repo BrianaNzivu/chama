@@ -14,17 +14,10 @@
             android:icon="@drawable/conversation"
             android:title="Conservations" />
 
-        <item android:title="My Transactions">
-            <menu>
-                <item android:id="@+id/nav_transaction"
-                    android:icon="@drawable/transaction"
-                    android:title="Transactions" />
-                <item
-                    android:id="@+id/nav_transactiontwo"
-                    android:icon="@drawable/transaction"
-                    android:title="Record Transactions"/>
-            </menu>
-        </item>
+        <item
+            android:id="@+id/nav_transactiontwo"
+            android:icon="@drawable/transaction"
+            android:title="Transactions" />
 
 
         <item
@@ -38,7 +31,7 @@
     <item android:title="Chamas">
         <menu>
             <item
-                android:id="@+id/nav_add"
+                android:id="@+id/add"
                 android:icon="@drawable/add"
                 android:title="Create A Chama"/>
             <item
@@ -51,5 +44,4 @@
                 android:title="ENG. Group" />
         </menu>
     </item>
-
 </menu>
