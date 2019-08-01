@@ -1,4 +1,4 @@
-package com.example.m_chama.View;
+package com.example.m_chama.Admin;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -16,6 +16,7 @@ import com.example.m_chama.Model.User;
 import com.example.m_chama.Presenter.Background;
 import com.example.m_chama.Presenter.MyIntentService;
 import com.example.m_chama.R;
+import com.example.m_chama.View.Mchamawidget;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

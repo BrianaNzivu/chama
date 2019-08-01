@@ -1,142 +1,214 @@
 package com.example.m_chama.View;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.androidstudy.daraja.Daraja;
-import com.androidstudy.daraja.DarajaListener;
-import com.androidstudy.daraja.model.AccessToken;
-import com.androidstudy.daraja.model.LNMExpress;
-import com.androidstudy.daraja.model.LNMResult;
-import com.androidstudy.daraja.util.TransactionType;
 import com.example.m_chama.R;
+import com.google.android.material.navigation.NavigationView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class Home extends Fragment {
+public class Home extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    public TextView nemail;
-    public TextView mname;
-    private String value;
-    public Context ncontext;
-    Daraja daraja;
-    public String anumber;
-    private Button mybutton;
+    private View mCoordinate;
+    private ImageView mImage, nImage;
+    private TextView nText, nEmail;
+    private String Email, Name,Amount,Date;
+
 
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-//Setting Title bar.
-        ((home) getActivity())
-                .getSupportActionBar().setTitle("Home");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+        Intent intent = getIntent();
+//Setting Name and EMail on Toolbar.
+        Email = intent.getStringExtra("aEmail");
+        Name = intent.getStringExtra("aname");
+        Toolbar toolbar = findViewById(R.id.mytoolbar);
+        setSupportActionBar(toolbar);
+
+        Log.d("HomeName","Name of user " + Name);
+//New Bundle for FragmentHome Java Class.
+        Bundle args = new Bundle();
+        args.putString("email", Email);
+        args.putString("name",Name);
+
+        FragmentHome fragment = new FragmentHome();
+        fragment.setArguments(args);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container_layout, fragment);
+        fragmentTransaction.commit();
+
+         //inflate header layout
 
 
-        nemail=(TextView) view.findViewById(R.id.myemail);
-        mname=(TextView)view.findViewById(R.id.myname);
+        NavigationView Navigationview = (NavigationView) findViewById(R.id.nav_view);
 
-        Log.d("Name","getting name");
-
-//Getting Bundle.
-       Bundle myBundle = getArguments();
-       String email = myBundle.getString("email");
-       nemail.setText(email);
-       String name =myBundle.getString("name");
-       mname.setText(name);
-
-// Getting the data of the sharedPreferences
-
-        ncontext = getActivity().getApplicationContext();
-
-        SharedPreferences settings=getActivity().getSharedPreferences("prefs",0);
-        mybutton=(Button)view.findViewById(R.id.mpesa);
-
-//Using Daraja API in order to set M-Pesa.
-        daraja = Daraja.with("Zc98sT35Czsl5QgC0E6L8BrEcvGycR46", "Vq6BE83VoMbbojNs", new DarajaListener<AccessToken>()
-        {
-            @Override
-            public void onResult(@NonNull AccessToken accessToken)
-            {
-                Log.d("DarajaCreation", "The daraja class has beeen created");
-                Log.i("AccessToken", accessToken.getAccess_token());
-            }
-
-            @Override
-            public void onError(String error)
-            {
-                Log.d("DarajaCreation", "The daraja class has not been created,an error has been encountered" + error);
-                Log.e("AccessToken", error);
-            }
-
-        });
-
-        mybutton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-
-                LNMExpress lnmExpress = new LNMExpress(
-                        "174379",
-                        "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
-                        TransactionType.CustomerPayBillOnline,
-                        "100",
-                        "254798436887",
-                        "174379",
-                        anumber,
-                        "http://mycallbackurl.com/checkout.php",
-                        "001ABC",
-                        "Goods Payment"
-                );
-
-                daraja.requestMPESAExpress(lnmExpress,
-                        new DarajaListener<LNMResult>()
-                        {
-                            @Override
-                            public void onResult(@NonNull LNMResult lnmResult)
-                            {
-                                Log.d("SendingMoney", "Money has been sent");
-                            }
-
-                            @Override
-                            public void onError(String error)
-                            {
-                                Log.d("SendingMoney", "Money has not been sent " + error);
-                            }
-                        });
-            }
-        });
+        View navView = Navigationview.inflateHeaderView(R.layout.nav_header_home);
 
 
-        if (settings !=null)
-        {
-            String value = settings.getString("value"," ");
-            mname.setText(value);
+//        mImage = (ImageView) navView.findViewById(R.id.navpic);
+
+        nText = (TextView) navView.findViewById(R.id.name);
+        nEmail = (TextView) navView.findViewById(R.id.email);
+        nEmail.setText(Email);
+        nText.setText(Name);
 
 
-        }else
-            {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
 
-        }
+        mCoordinate = findViewById(R.id.Layout);
 
-        // Inflate the layout for this fragment
-        return view;
+
     }
 
+
+
+    @Override
+    public void onBackPressed()
+    {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
+            drawer.closeDrawer(GravityCompat.START);
+        } else
+            {
+            super.onBackPressed();
+            }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the FragmentHome/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings)
+        {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+            if (id == R.id.nav_home)
+            {
+
+
+                Bundle args = new Bundle();
+                args.putString("email", Email);
+                args.putString("name",Name);
+
+                FragmentHome fragment = new FragmentHome();
+                fragment.setArguments(args);
+                FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container_layout, fragment);
+                fragmentTransaction.commit();
+
+
+            } else if (id == R.id.nav_conversation)
+            {
+
+                Bundle args = new Bundle();
+                args.putString("username", Name);
+
+                Log.d("COnversationUsername","the user name passed" + Name);
+                Conversation newFragment = new Conversation();
+                newFragment.setArguments(args);
+
+                FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container_layout, newFragment);
+                fragmentTransaction.commit();
+
+
+            } else if (id == R.id.nav_profile)
+            {
+
+                Bundle args = new Bundle();
+                args.putString("Name",Name);
+                Profile fragment = new Profile();
+                fragment.setArguments(args);
+                FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container_layout, fragment);
+                fragmentTransaction.commit();
+
+
+            } else if (id == R.id.nav_transactiontwo)
+            {
+
+                Bundle args=new Bundle();
+                args.putString("Name",Name);
+                args.putString("Date",Date);
+                args.putString("Amount",Amount);
+
+                Transaction fragment = new Transaction();
+                FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container_layout, fragment);
+                fragmentTransaction.commit();
+
+
+            } else if (id == R.id.nav_send)
+            {
+
+            }
+
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+
+
+
+    }
+
+
 }
+
+
+
+

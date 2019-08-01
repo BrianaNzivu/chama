@@ -1,5 +1,4 @@
-package com.example.m_chama.View;
-
+package com.example.m_chama.Admin;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -10,6 +9,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import com.example.m_chama.R;
+import com.example.m_chama.View.Home;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -33,7 +34,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Profile extends Fragment {
+public class AdminProfile extends Fragment {
 
     private Button mbutton;
     private TextView pname;
@@ -43,7 +44,7 @@ public class Profile extends Fragment {
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
 
-    public Profile() {
+    public AdminProfile() {
         // Required empty public constructor
     }
 
@@ -80,47 +81,47 @@ public class Profile extends Fragment {
                 Log.d("alert", "alert being seen");
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
-                    alert.setTitle("Edit Name");
-                    alert.setMessage("Enter your New Name ");
+                alert.setTitle("Edit Name");
+                alert.setMessage("Enter your New Name ");
 
- // Set an EditText view to get user input
-                    final EditText input = new EditText(getActivity().getApplicationContext());
-                    alert.setView(input);
+                // Set an EditText view to get user input
+                final EditText input = new EditText(getActivity().getApplicationContext());
+                alert.setView(input);
 
-                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int whichButton)
                     {
-                        public void onClick(DialogInterface dialog, int whichButton)
-                        {
-                            value = input.getText().toString().trim();
-                            // get user input and set it to result
-                            // edit text
-                            pname.setText(input.getText());
- // Creating the shared preferences for the name
+                        value = input.getText().toString().trim();
+                        // get user input and set it to result
+                        // edit text
+                        pname.setText(input.getText());
+                        // Creating the shared preferences for the name
 
-                            Log.d("Pref", "Shared prefrence being captured");
+                        Log.d("Pref", "Shared prefrence being captured");
 
-                            editor.putString("value", value);
-                            editor.commit();
+                        editor.putString("value", value);
+                        editor.commit();
 
-                        }
+                    }
 
-                        private SharedPreferences getSharedPreferences(String prefs, int i)
-                        {
-
-                            return null;
-
-                        }
-                    });
-
-                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+                    private SharedPreferences getSharedPreferences(String prefs, int i)
                     {
-                        public void onClick(DialogInterface dialog, int whichButton)
-                        {
-                            // Canceled.
-                        }
-                    });
 
-                    alert.show();
+                        return null;
+
+                    }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                        // Canceled.
+                    }
+                });
+
+                alert.show();
 
             }
 
@@ -143,13 +144,13 @@ public class Profile extends Fragment {
             }
         });
 
- // Set title bar
+        // Set title bar
 
         ((Home) getActivity())
                 .getSupportActionBar().setTitle("Profile");
 
 
- // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         return view;
     }
 
@@ -207,10 +208,10 @@ public class Profile extends Fragment {
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         } else
-            {
+        {
 // In this case the permissions have been offered already
             startingUpTheCameraPicker();
-            }
+        }
     }
 
     @Override
@@ -223,10 +224,10 @@ public class Profile extends Fragment {
 // In this case the permission has been granted and the user can start the camera picker
                 startingUpTheCameraPicker();
             } else
-                {
+            {
 // Permission Denied
                 Toast.makeText(getActivity().getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-                }
+            }
             return;
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -263,10 +264,10 @@ public class Profile extends Fragment {
 
             Toast.makeText(getActivity().getApplicationContext(), "", Toast.LENGTH_LONG).show();
         } else
-            {
+        {
             imgvw.setImageResource(R.drawable.back);
 
-            }
+        }
     }
 
 }

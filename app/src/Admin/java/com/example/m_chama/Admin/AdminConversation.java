@@ -1,4 +1,4 @@
-package com.example.m_chama.View;
+package com.example.m_chama.Admin;
 
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -6,13 +6,8 @@ import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +17,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.example.m_chama.Model.ChatAdapter;
 import com.example.m_chama.Model.ConversationViewModel;
 import com.example.m_chama.Model.FirebaseLiveData;
@@ -29,6 +31,7 @@ import com.example.m_chama.Model.chat;
 import com.example.m_chama.Presenter.Background;
 import com.example.m_chama.Presenter.MyIntentService;
 import com.example.m_chama.R;
+import com.example.m_chama.View.Home;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,7 +47,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Conversation extends Fragment {
+public class AdminConversation extends Fragment {
 
 
     private static final Object JOB_SCHEDULER_SERVICE= 0;
@@ -52,7 +55,7 @@ public class Conversation extends Fragment {
     public DatabaseReference mref;
     public ChatAdapter chatAdapter;
     private RecyclerView chatRecyclerView;
-    private  List<chat>chatList=new ArrayList<>();
+    private List<chat> chatList=new ArrayList<>();
     private Button nbutton;
     private EditText nmessage;
     private String value;
@@ -61,7 +64,7 @@ public class Conversation extends Fragment {
     public FirebaseLiveData firebaseLiveData;
 
 
-    public Conversation() {
+    public AdminConversation() {
         // Required empty public constructor
     }
 
@@ -79,7 +82,7 @@ public class Conversation extends Fragment {
         Bundle b = getArguments();
         final String s = b.getString("username");
 
- // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
 
         final View view =inflater.inflate(R.layout.fragment_conversation, container, false);
 
@@ -95,7 +98,7 @@ public class Conversation extends Fragment {
         JobScheduler jobScheduler = (JobScheduler)getActivity().getApplicationContext()
                 .getSystemService(String.valueOf(0));
 
-        ComponentName componentName = new ComponentName(getActivity().getApplicationContext(),JobService.class);
+        ComponentName componentName = new ComponentName(getActivity().getApplicationContext(), JobService.class);
 
         JobInfo jobInfoObj = new JobInfo.Builder(0, componentName)
                 .setPeriodic(50000000)
@@ -123,14 +126,14 @@ public class Conversation extends Fragment {
             public void onClick(View v)
             {
 
-               nmessage=(EditText)view.findViewById(R.id.convo);
-               String message = nmessage.getText().toString();
+                nmessage=(EditText)view.findViewById(R.id.convo);
+                String message = nmessage.getText().toString();
 
-               Log.d("Message","Message sent " + message);
+                Log.d("Message","Message sent " + message);
 
 //This returns the current time in string format
-                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                    String stringTime = sdf.format(new Date());
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                String stringTime = sdf.format(new Date());
 
 
                 final chat myChat=new chat(message,s,stringTime);
@@ -155,25 +158,25 @@ public class Conversation extends Fragment {
                             mychat=eventsList.getValue(chat.class);
                         }
                     }
-                 });
+                });
 
 
 //Linking to my intent service.
 
-                   Intent intent=new Intent(getActivity().getApplicationContext(), MyIntentService.class);
+                Intent intent=new Intent(getActivity().getApplicationContext(), MyIntentService.class);
 
-                   intent.setAction(Background.addChat);
-                   intent.putExtra("chat",myChat);
+                intent.setAction(Background.addChat);
+                intent.putExtra("chat",myChat);
 
-                   Log.d("button","button clicked");
+                Log.d("button","button clicked");
 
-                    getActivity().startService(intent);
+                getActivity().startService(intent);
 
             }
 
         });
 
- // attaching the childEventListener
+        // attaching the childEventListener
 
         mref.addChildEventListener(new ChildEventListener()
         {
@@ -228,8 +231,4 @@ public class Conversation extends Fragment {
     }
 
 }
-
-
-
-
 

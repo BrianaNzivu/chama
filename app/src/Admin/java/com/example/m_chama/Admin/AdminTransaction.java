@@ -1,14 +1,9 @@
-package com.example.m_chama.View;
+package com.example.m_chama.Admin;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,12 +16,19 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.m_chama.Admin.Two;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.example.m_chama.Model.Adapter;
 import com.example.m_chama.Model.FirebaseLiveData;
 import com.example.m_chama.Model.TransactionViewModel;
 import com.example.m_chama.Model.User;
 import com.example.m_chama.R;
+import com.example.m_chama.View.Home;
+import com.example.m_chama.View.Mchamawidget;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Transaction extends Fragment implements LoaderManager.LoaderCallbacks<List<com.example.m_chama.Model.User>> {
+public class AdminTransaction extends Fragment implements LoaderManager.LoaderCallbacks<List<com.example.m_chama.Model.User>> {
 
     private static final int OPERATION_SEARCH_LOADER = 1;
     private RecyclerView mRecycle;
@@ -54,7 +56,7 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
 
     private Button aButton;
 
-    public Transaction() {
+    public AdminTransaction() {
         // Required empty public constructor
     }
 
@@ -109,10 +111,10 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
             loaderManager.initLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
             Log.d("Loader", "Loader has been initialized ");
         } else
-            {
+        {
             loaderManager.restartLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
             Log.d("Restart", "Loader has been restarted");
-            }
+        }
 
 //Creating ViewModel.
         viewModel = ViewModelProviders.of(getActivity()).get(TransactionViewModel.class);

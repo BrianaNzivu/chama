@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         if(firebaseAuth.getCurrentUser() != null)
         {
             finish();
-            startActivity(new Intent(getApplicationContext(), home.class));
+            startActivity(new Intent(getApplicationContext(), Home.class));
         }
 
 //initializing views
@@ -103,7 +103,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         {
                             finish();
 
-                            Intent intent=new Intent(Login.this, home.class);
+                            Intent intent=new Intent(Login.this, Home.class);
                             intent.putExtra("aEmail",email);
                             startActivity(intent);
                         }

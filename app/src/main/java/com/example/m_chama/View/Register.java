@@ -121,7 +121,7 @@ public class Register extends AppCompatActivity {
                         current_user_db.child("image").setValue("default");
 
                         mProgress.dismiss();
-                        Intent mainIntent = new Intent(Register.this, home.class);
+                        Intent mainIntent = new Intent(Register.this, Home.class);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         mainIntent.putExtra("aEmail",email);
                         mainIntent.putExtra("aname",name);

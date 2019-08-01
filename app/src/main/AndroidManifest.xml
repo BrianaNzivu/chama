@@ -32,9 +32,9 @@
 
         </receiver>
 
-        <activity android:name=".View.Two" />
+        <activity android:name=".Admin.Two" />
         <activity
-            android:name=".View.home"
+            android:name=".View.Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.Login" />
