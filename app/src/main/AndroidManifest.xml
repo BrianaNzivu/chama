@@ -15,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
+        <activity android:name=".View.Two"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544/1033173712"/>
+            android:value="ca-app-pub-3940256099942544/1033173712" />
 
         <receiver android:name=".View.Mchamawidget">
             <intent-filter>
@@ -27,12 +28,11 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/mchamawidget_info"/>
+                android:resource="@xml/mchamawidget_info" />
             <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
 
         </receiver>
 
-        <activity android:name=".Admin.Two" />
         <activity
             android:name=".View.Home"
             android:label="@string/title_activity_home"

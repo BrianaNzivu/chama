@@ -33,14 +33,13 @@
             }
           ]
         }
-      },
-      "admob_app_id": "ca-app-pub-4581199966500489~9052013921"
+      }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:547818607342:android:eb55318eddc1ac26",
+        "mobilesdk_app_id": "1:547818607342:android:368188f1315cd6e8",
         "android_client_info": {
-          "package_name": "com.example.m_chama.User"
+          "package_name": "com.example.m_chama.Admin"
         }
       },
       "oauth_client": [

@@ -155,7 +155,7 @@ public class Home extends AppCompatActivity
                 Bundle args = new Bundle();
                 args.putString("username", Name);
 
-                Log.d("COnversationUsername","the user name passed" + Name);
+                Log.d("ConversationUsername","the user name passed" + Name);
                 Conversation newFragment = new Conversation();
                 newFragment.setArguments(args);
 

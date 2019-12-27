@@ -1,4 +1,6 @@
-package com.example.m_chama.Admin;
+package com.example.m_chama.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -10,15 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.m_chama.Model.User;
 import com.example.m_chama.Presenter.Background;
 import com.example.m_chama.Presenter.MyIntentService;
 import com.example.m_chama.R;
-import com.example.m_chama.View.Mchamawidget;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 
 public class Two extends AppCompatActivity {
 

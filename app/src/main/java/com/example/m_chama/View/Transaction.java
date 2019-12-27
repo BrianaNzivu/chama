@@ -20,8 +20,6 @@ import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.m_chama.Admin.Two;
 import com.example.m_chama.Model.Adapter;
 import com.example.m_chama.Model.FirebaseLiveData;
 import com.example.m_chama.Model.TransactionViewModel;
@@ -109,10 +107,10 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
             loaderManager.initLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
             Log.d("Loader", "Loader has been initialized ");
         } else
-            {
+        {
             loaderManager.restartLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
             Log.d("Restart", "Loader has been restarted");
-            }
+        }
 
 //Creating ViewModel.
         viewModel = ViewModelProviders.of(getActivity()).get(TransactionViewModel.class);
@@ -218,5 +216,4 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
 
     }
 }
-
 

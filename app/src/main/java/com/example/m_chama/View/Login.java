@@ -57,7 +57,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         progressDialog = new ProgressDialog(this);
 
-//attaching click listener
         buttonSignIn.setOnClickListener(this);
 
     }
