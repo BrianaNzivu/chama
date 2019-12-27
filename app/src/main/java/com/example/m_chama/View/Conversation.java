@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -92,17 +93,17 @@ public class Conversation extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), RecyclerView.VERTICAL, false);
 
 //Attaching my Job Service.
-        JobScheduler jobScheduler = (JobScheduler)getActivity().getApplicationContext()
-                .getSystemService(String.valueOf(0));
-
-        ComponentName componentName = new ComponentName(getActivity().getApplicationContext(),JobService.class);
-
-        JobInfo jobInfoObj = new JobInfo.Builder(0, componentName)
-                .setPeriodic(50000000)
-                .setRequiresBatteryNotLow(true)
-                .build();
-
-        jobScheduler.schedule(jobInfoObj);
+//        JobScheduler jobScheduler = (JobScheduler)getActivity().getApplicationContext()
+//                .getSystemService(String.valueOf(0));
+//
+//        ComponentName componentName = new ComponentName(getActivity().getApplicationContext(),JobService.class);
+//
+//        JobInfo jobInfoObj = new JobInfo.Builder(0, componentName)
+//                .setPeriodic(50000000)
+//                .setRequiresBatteryNotLow(true)
+//                .build();
+//
+//        jobScheduler.schedule(jobInfoObj);
 
 
 // Set the layoutManager of the recyclerView
@@ -178,21 +179,22 @@ public class Conversation extends Fragment {
         mref.addChildEventListener(new ChildEventListener()
         {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
-            {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
 //  This allows it to be realtime adding to the screen
                 chat chat = dataSnapshot.getValue(chat.class);
 
                 chatList.add(chat);
-                if (chatList.size() != 0)
-                {
+                if (chatList.size() != 0) {
                     chatAdapter.setChatList(chatList);
                     chatRecyclerView.scrollToPosition(chatAdapter.getItemCount() + 1);
                     Log.d("AddingChats", "Chats have been added to the UI");
 
                 }
-            }
+
+
+                }
+
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

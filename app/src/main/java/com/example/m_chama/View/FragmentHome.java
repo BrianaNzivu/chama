@@ -45,7 +45,7 @@ public class FragmentHome extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 //Setting Title bar.
         ((Home) getActivity())
-                .getSupportActionBar().setTitle("FragmentHome");
+                .getSupportActionBar().setTitle("Home");
 
 
         nemail=(TextView) view.findViewById(R.id.myemail);

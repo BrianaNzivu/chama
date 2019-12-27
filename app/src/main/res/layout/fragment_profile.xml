@@ -46,13 +46,11 @@
 
     <Button
         android:id="@+id/editPhoto"
-        android:layout_width="96dp"
-        android:layout_height="82dp"
+        android:layout_width="83dp"
+        android:layout_height="92dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/camera"
         app:layout_constraintBottom_toBottomOf="parent"
