@@ -63,7 +63,7 @@ public class Conversation extends Fragment {
 
 
     public Conversation() {
-        // Required empty public constructor
+// Required empty public constructor
     }
 
 
@@ -119,7 +119,6 @@ public class Conversation extends Fragment {
         nbutton=(Button) view.findViewById(R.id.send);
         nbutton.setOnClickListener(new View.OnClickListener()
         {
-
             @Override
             public void onClick(View v)
             {
@@ -161,14 +160,14 @@ public class Conversation extends Fragment {
 
 //Linking to my intent service.
 
-                   Intent intent=new Intent(getActivity().getApplicationContext(), MyIntentService.class);
+               Intent intent=new Intent(getActivity().getApplicationContext(), MyIntentService.class);
 
-                   intent.setAction(Background.addChat);
-                   intent.putExtra("chat",myChat);
+               intent.setAction(Background.addChat);
+               intent.putExtra("chat",myChat);
 
-                   Log.d("button","button clicked");
+               Log.d("button","button clicked");
 
-                    getActivity().startService(intent);
+               getActivity().startService(intent);
 
             }
 
@@ -179,13 +178,15 @@ public class Conversation extends Fragment {
         mref.addChildEventListener(new ChildEventListener()
         {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+            {
 
 //  This allows it to be realtime adding to the screen
                 chat chat = dataSnapshot.getValue(chat.class);
 
                 chatList.add(chat);
-                if (chatList.size() != 0) {
+                if (chatList.size() != 0)
+                {
                     chatAdapter.setChatList(chatList);
                     chatRecyclerView.scrollToPosition(chatAdapter.getItemCount() + 1);
                     Log.d("AddingChats", "Chats have been added to the UI");
@@ -193,7 +194,7 @@ public class Conversation extends Fragment {
                 }
 
 
-                }
+            }
 
 
             @Override

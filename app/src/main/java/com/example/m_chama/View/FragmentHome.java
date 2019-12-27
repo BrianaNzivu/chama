@@ -27,7 +27,7 @@ import com.example.m_chama.R;
  */
 public class FragmentHome extends Fragment {
 
-
+    public static final String YOUTUBE_API_KEY = "AIzaSyBsYbtK5OHRiXYq3KlISGeK6HFCnb_x3I4";
     public TextView nemail;
     public TextView mname;
     private String value;

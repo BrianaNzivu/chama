@@ -106,6 +106,7 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
         {
             loaderManager.initLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
             Log.d("Loader", "Loader has been initialized ");
+
         } else
         {
             loaderManager.restartLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
