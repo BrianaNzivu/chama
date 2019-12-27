@@ -1,11 +1,11 @@
 # MCHAMA
 This is a Mobile Application used to track any organization or groups activities.
 
-
+## Link to screenshots.
+https://www.canva.com/design/DADvO2V9OvI/Ku-YyfcPcARvUkac6WBk4w/view?utm_content=DADvO2V9OvI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
 
 ## Description
-Mchama is a Mobile App that is used by a group of people to track various activities especially monentary activities.The Mobile App has a Conversation Fragment which is used to send messages amongst the users in the same group or even individually.The Mobie
-le App also has a Transaction Fragmnt which shows the rcorded details done by the admin.The Profile fragment enables one to change any personal details such as the profile photo or even the name being displayed.
+Mchama is a Mobile App that is used by a group of people to track various activities especially monentary activities.The Mobile App has a Conversation Fragment which is used to send messages amongst the users in the same group or even individually.The App also has a Transaction Fragment which shows the recorded details done by the admin.The Profile fragment enables one to change any personal details such as the profile photo or even the name being displayed.
 
 
 
