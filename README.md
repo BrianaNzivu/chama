@@ -22,6 +22,6 @@ hdodenhof library for circular imageViews
 
 
 ## Support and contact details
-Incase you run into any error feel free to notify me using my email address bjnzivu@gmail.com
+Incase you run into any error feel free to notify me using my email address briananzivu@gmail.com
 
 Copyright (c) 2019 * Briana Nzivu *
