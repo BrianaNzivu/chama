@@ -80,10 +80,8 @@ public class Conversation extends Fragment {
         Bundle b = getArguments();
         final String s = b.getString("username");
 
- // Inflate the layout for this fragment
-
+// Inflate the layout for this fragment
         final View view =inflater.inflate(R.layout.fragment_conversation, container, false);
-
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mref = mFirebaseDatabase.getReference().child("Database").child("chat");
@@ -92,53 +90,31 @@ public class Conversation extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), RecyclerView.VERTICAL, false);
 
-//Attaching my Job Service.
-//        JobScheduler jobScheduler = (JobScheduler)getActivity().getApplicationContext()
-//                .getSystemService(String.valueOf(0));
-//
-//        ComponentName componentName = new ComponentName(getActivity().getApplicationContext(),JobService.class);
-//
-//        JobInfo jobInfoObj = new JobInfo.Builder(0, componentName)
-//                .setPeriodic(50000000)
-//                .setRequiresBatteryNotLow(true)
-//                .build();
-//
-//        jobScheduler.schedule(jobInfoObj);
-
-
 // Set the layoutManager of the recyclerView
-
         layoutManager.setStackFromEnd(true);
         chatRecyclerView.setLayoutManager(layoutManager);
-
-//chatRecyclerView.setHasFixedSize(true);
-
         chatRecyclerView.setAdapter(chatAdapter);
 
-//Setting onCLick listener for button for sending messgaes.
+//Setting OnCLickListener for button for sending messgaes.
         nbutton=(Button) view.findViewById(R.id.send);
         nbutton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
                nmessage=(EditText)view.findViewById(R.id.convo);
                String message = nmessage.getText().toString();
 
                Log.d("Message","Message sent " + message);
 
 //This returns the current time in string format
-                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                    String stringTime = sdf.format(new Date());
-
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                String stringTime = sdf.format(new Date());
 
                 final chat myChat=new chat(message,s,stringTime);
 
-
 //View Model for Conversation Fragment.
                 viewModel = ViewModelProviders.of(getActivity()).get(ConversationViewModel.class);
-
                 ConversationViewModel.FirebaseLiveData firebaseLiveData= viewModel.getDataSnapshotLiveData();
                 firebaseLiveData.observe(this, new Observer<DataSnapshot>()
                 {
@@ -157,24 +133,16 @@ public class Conversation extends Fragment {
                     }
                  });
 
-
-//Linking to my intent service.
+//Linking to intent service.
 
                Intent intent=new Intent(getActivity().getApplicationContext(), MyIntentService.class);
-
                intent.setAction(Background.addChat);
                intent.putExtra("chat",myChat);
-
-               Log.d("button","button clicked");
-
                getActivity().startService(intent);
 
             }
-
         });
-
  // attaching the childEventListener
-
         mref.addChildEventListener(new ChildEventListener()
         {
             @Override

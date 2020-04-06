@@ -56,27 +56,19 @@ public class Two extends AppCompatActivity {
             {
                 Log.d("dialog","Strating my progrees dialog");
                 nprogress=new ProgressBar(Two.this);
-
-
-
                 name = mname.getText().toString();
                 email=mdate.getText().toString();
                 number=mnumber.getText().toString();
 
-
-
+//Creating a widget.
                 appWidget = new Bundle();
-
                 appWidget.putString("Name",name);
                 appWidget.putString("Date",email);
                 appWidget.putString("Number",number);
 
-
-
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplication().getApplicationContext());
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(getApplication().getApplicationContext(), Mchamawidget.class));
                 Mchamawidget.wiringUpTheWidget(getApplication().getApplicationContext(),appWidgetManager,appWidgetIds,appWidget);
-
 
                 final User myUser=new User(name,email,number);
 

@@ -25,11 +25,11 @@ public class Mchamawidget extends AppWidgetProvider
                                 int appWidgetId ,Bundle info)
     {
         CharSequence widgetText = context.getString(R.string.appwidget_text);
-        // Construct the RemoteViews object
+// Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.mchamawidget);
         setTheUiData(info,context);
 
-        // Instruct the widget manager to update the widget
+// Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
@@ -43,7 +43,7 @@ public class Mchamawidget extends AppWidgetProvider
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
-        // There may be multiple widgets active, so update all of them
+// There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds)
         {
             updateAppWidget(context, appWidgetManager, appWidgetId,info);
@@ -53,18 +53,17 @@ public class Mchamawidget extends AppWidgetProvider
     @Override
     public void onEnabled(Context context)
     {
-        // Enter relevant functionality for when the first widget is created
+// Enter relevant functionality for when the first widget is created
     }
 
     @Override
     public void onDisabled(Context context)
     {
-        // Enter relevant functionality for when the last widget is disabled
+// Enter relevant functionality for when the last widget is disabled
     }
 
     public static void setTheUiData(Bundle info, Context context)
     {
-
         String name = info.getString("Name");
         String date = info.getString("Date");
         String amount = info.getString("Amount");

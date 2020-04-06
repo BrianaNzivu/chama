@@ -23,7 +23,6 @@ public class MyIntentService extends IntentService {
         Log.d("On handler","Its starting");
 
         Background background=new Background(this);
-
         String action=intent.getAction();
 //Writing to Firebase Database for Transaction Fragment.
         if(Background.register.equals(action))

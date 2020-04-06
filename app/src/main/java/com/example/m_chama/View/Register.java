@@ -65,7 +65,8 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        String [] Region ={
+        String [] Region =
+        {
                 "Kenya" ,"Tanzania" ,"Uganda"
         };
 
@@ -85,12 +86,7 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
-
-
 
     private void startRegister()
     {
@@ -100,10 +96,10 @@ public class Register extends AppCompatActivity {
         final String email = mEmailField.getText().toString().trim();
         String password = mPasswordField.getText().toString().trim();
 
-
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(phone) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
         {
-            //progress dialog//
+//progress dialog
+
             mProgress.setMessage("Just give us a second....");
             mProgress.show();
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()

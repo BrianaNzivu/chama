@@ -23,7 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.103" />
 
-
     <TextView
         android:id="@+id/jemail"
         android:drawableLeft="@drawable/date"
@@ -40,7 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.427" />
-
 
     <TextView
         android:id="@+id/jphone"

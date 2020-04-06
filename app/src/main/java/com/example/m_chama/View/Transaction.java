@@ -3,6 +3,7 @@ package com.example.m_chama.View;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.m_chama.Model.Adapter;
 import com.example.m_chama.Model.FirebaseLiveData;
 import com.example.m_chama.Model.TransactionViewModel;
@@ -35,10 +37,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class Transaction extends Fragment implements LoaderManager.LoaderCallbacks<List<com.example.m_chama.Model.User>> {
 
     private static final int OPERATION_SEARCH_LOADER = 1;
@@ -49,8 +51,8 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
     public TransactionViewModel viewModel;
     private static FirebaseLiveData firebaseLiveData;
     private Two appWidget;
-
     private Button aButton;
+
 
     public Transaction() {
         // Required empty public constructor
@@ -62,15 +64,12 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
                              Bundle savedInstanceState)
     {
 //Inflating fragment layout.
-
         View view = inflater.inflate(R.layout.fragment_transactiontwo, container, false);
-
         ((Home) getActivity()).getSupportActionBar().setTitle("Transactions");
         FloatingActionButton tButton;
 
 
         tButton = (FloatingActionButton) view.findViewById(R.id.next);
-
         tButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -78,30 +77,25 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
             {
                 Intent intent = new Intent(getActivity().getApplicationContext(), Two.class);
                 startActivity(intent);
-
             }
         });
 
         mRecycle = (RecyclerView) view.findViewById(R.id.recyclerview);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), RecyclerView.VERTICAL, false);
         mRecycle.setLayoutManager(layoutManager);
-
         mAdapter = new Adapter(getActivity().getApplicationContext());
-
         mRecycle.setAdapter(mAdapter);
 
-        //Create a Bundle called bundle
 
+//Creating a Bundle to pass information from Two.java
         Bundle bundle = new Bundle();
-
 
         LoaderManager loaderManager = getLoaderManager();
 
-        // Get our Loader by calling getLoader and passing the ID we specified
+// Get our Loader by calling getLoader and passing the ID we specified
         Loader<List> loader = loaderManager.getLoader(OPERATION_SEARCH_LOADER);
 
-        // If the Loader was null, initialize it. Else, restart it.
+// If the Loader was null, initialize it. Else, restart it.
         if (loader == null)
         {
             loaderManager.initLoader(OPERATION_SEARCH_LOADER, bundle, this).forceLoad();
@@ -121,7 +115,6 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
             @Override
             public void onChanged(DataSnapshot dataSnapshot)
             {
-
                 DataSnapshot eventsDetails = dataSnapshot.child("database").child("events");
                 Boolean exist = eventsDetails.exists();
                 Log.d("Confirming", "This confirms that the datasnapshot exists " + exist);
@@ -131,11 +124,10 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
                     Two two = new Two();
                     two = eventsList.getValue(Two.class);
                 }
-
             }
         });
 
-
+//Creating a Widget for the App.
         Bundle appWidget;
         appWidget = new Bundle();
 
@@ -154,41 +146,30 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
     {
         Log.d("Hi","just checking");
         return new AsyncTaskLoader<List<User>>(getActivity().getApplicationContext())
-
         {
             @Nullable
             @Override
             public List<User> loadInBackground()
             {
-
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
                 DatabaseReference ref = database.getReference().child("Database").child("transaction");
 
-// Attach a listener to read the data at our posts reference
-
+// Attaching a listener to read the data at our posts reference
                 ref.addValueEventListener(new ValueEventListener()
 
-// Inflate the layout for this fragment
+// Inflating the layout for this fragment
 
                 {
-
                     @Override
-
                     public void onDataChange(DataSnapshot dataSnapshot)
                     {
-
                         Log.d("Reading", "Read all the records ");
                         Iterable<DataSnapshot> userlist = dataSnapshot.getChildren();
-
                         for (DataSnapshot onejob : userlist)
                         {
                             User myUser = onejob.getValue(User.class);
                             userListArray.add(myUser);
                         }
-
-
-
                         mAdapter.setUserList(userListArray);
                     }
 
@@ -203,7 +184,6 @@ public class Transaction extends Fragment implements LoaderManager.LoaderCallbac
 
             }
         };
-
     }
 
     @Override
