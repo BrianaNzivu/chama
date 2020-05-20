@@ -23,3 +23,4 @@ hdodenhof library for circular imageViews
 
 
 ## Support and contact details
+briananzivu@gmail.com
